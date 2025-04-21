@@ -165,7 +165,8 @@ return {
     opts = {},
   },
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
+    dependencies = { 'nvimtools/none-ls-extras.nvim' },
     config = function()
       local null_ls = require 'null-ls'
 
@@ -211,12 +212,10 @@ return {
 
       null_ls.setup {
         sources = {
-          null_ls.builtins.diagnostics.eslint_d.with(opts.eslint_diagnostics),
-          null_ls.builtins.formatting.eslint_d.with(opts.eslint_formatting),
+          require 'none-ls.diagnostics.eslint',
           null_ls.builtins.formatting.prettier.with(opts.prettier_formatting),
           null_ls.builtins.formatting.stylua.with(opts.stylua_formatting),
           null_ls.builtins.formatting.elm_format.with(opts.elm_format_formatting),
-          null_ls.builtins.code_actions.eslint_d.with(opts.eslint_diagnostics),
         },
         on_attach = on_attach,
       }
@@ -234,14 +233,20 @@ return {
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = { 'lua_ls' }, -- Replace with your LSP servers
+        automatic_installation = true,
       }
     end,
   },
   {
     'jay-babu/mason-null-ls.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      'williamboman/mason.nvim',
+      'nvimtools/none-ls.nvim',
+    },
     config = function()
       require('mason-null-ls').setup {
-        ensure_installed = { 'eslint', 'eslint_d', 'prettier' }, -- Replace with formatters/linters you want
+        ensure_installed = { 'eslint', 'prettier' }, -- Replace with formatters/linters you want
         automatic_installation = true,
       }
     end,
@@ -417,7 +422,7 @@ return {
         -- reasoning_effort = "high" -- only supported for reasoning models (o1, etc.)
       },
       behaviour = {
-        auto_suggestions = true, -- Experimental stage
+        auto_suggestions = false, -- Experimental stage
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
