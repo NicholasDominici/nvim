@@ -156,7 +156,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-
 vim.opt.tabstop = 4
 
 vim.opt.shiftwidth = 4
@@ -203,7 +202,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-
 vim.keymap.set('n', '<leader><tab>', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neo-tree' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
@@ -226,11 +224,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
   callback = function()
     vim.opt_local.list = true
-    vim.opt_local.listchars = { space = "·", tab = "→ ", trail = "•", extends = "⟩", precedes = "⟨" }
+    vim.opt_local.listchars = { space = '·', tab = '→ ', trail = '•', extends = '⟩', precedes = '⟨' }
   end,
 })
 
