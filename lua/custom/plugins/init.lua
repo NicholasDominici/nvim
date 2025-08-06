@@ -331,7 +331,7 @@ return {
     'karb94/neoscroll.nvim',
     config = function()
       require('neoscroll').setup {
-        duration_multiplier = 0.4,
+        duration_multiplier = 0.2,
       }
     end,
   },
@@ -397,10 +397,10 @@ return {
       -- Smears will blend better on all backgrounds.
       legacy_computing_symbols_support = false,
 
-      stiffness = 0.8, -- 0.6      [0, 1]
+      stiffness = 0.6, -- 0.6      [0, 1]
 
       trailing_stiffness = 0.5, -- 0.3      [0, 1]
-      distance_stop_animating = 0.5, -- 0.1      > 0
+      distance_stop_animating = 0.1, -- 0.1      > 0
       hide_target_hack = false, -- true     boolean
     },
   },
